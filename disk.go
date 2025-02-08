@@ -49,6 +49,9 @@ func InitSSH(c *Config) (Directory, error) {
 	if err != nil {
 		return Directory{}, err
 	}
+	if stderrBuf.Len() != 0 {
+		return Directory{}, fmt.Errorf(stderrBuf.String())
+	}
 
 	available, err := strconv.Atoi(strings.TrimSpace(stdoutBuf.String()))
 	if err != nil {
