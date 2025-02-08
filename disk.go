@@ -33,7 +33,7 @@ func InitSSH(c *Config) (Directory, error) {
 		Auth:            []ssh.AuthMethod{ssh.Password(c.Password)},
 		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
 	}
-	client, err := ssh.Dial("tcp", fmt.Sprintf("%s:%d", c.Host, &c.Port), config)
+	client, err := ssh.Dial("tcp", fmt.Sprintf("%s:%d", c.Host, c.Port), config)
 	if err != nil {
 		return Directory{}, err
 	}
